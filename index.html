@@ -1,31 +1,121 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alphabet Clash Pro</title>
     <!-- daisy UI and Tailwind -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- custom css -->
-    <link rel="stylesheet" href="styles/style.css">
-</head>
-<body class="">
-    <main class="min-h-screen bg-[#010313] bg-[url(images/background.png)] bg-no-repeat bg-center">
-        <section class="home min-h-screen flex flex-col justify-center items-center">
-           <div class="flex flex-col items-center justify-center">
-            <h1 class="text-white anton-regular text-[170px]">ALPHABET CLASH</h1>
-           <p class="text-white text-[26px]">Unleash Your Keyboard Kung Fu : Press “Enter” to Play</p>
-           <button class="text-navy text-lg btn font-extrabold h-14 w-32 rounded-lg mt-16 bg-white">Play Now</button>
-           </div>
-        </section>
-        <section class="play-ground">
-    
-        </section>
-        <section class="score">
-            
-        </section>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body class="">
+    <main
+      class="min-h-screen bg-[#010313] bg-[url(images/background.png)] bg-no-repeat bg-center"
+    >
+      <!-- home screen -->
+      <section id="home-section" class="min-h-screen flex flex-col justify-center items-center">
+        <div class="flex flex-col items-center justify-center space-y-16">
+          <h1 class="text-white anton-regular text-[170px]">ALPHABET CLASH</h1>
+          <p class="text-white text-[26px]">
+            Unleash Your Keyboard Kung Fu : Press “Enter” to Play
+          </p>
+          <button onclick="play()" id="play-now" class="text-navy text-lg btn font-extrabold h-14 w-32 rounded-lg mt-16 bg-white"> Play Now </button>
+        </div>
+      </section>
+      <!-- play ground start -->
+      <section id="palyground-section" class="hidden">
+        <div class="flex flex-col justify-center items-center gap-10 min-h-screen">
+          <!-- screen -->
+            <div class="mt-32">
+                <div class="artboard artboard-horizontal phone-6 rounded-2xl border-[18px] border-[#2F2941] bg-[#FFFFFFB3] -mt-[450px] text-center"></div>
+                <div class="bg-[#2F2941] text-white h-14 text-center text-xl w-96 rounded-b-xl -mt-80 ml-80">
+                    <p class="pt-3 font-medium">Don't watch keyboard  while playing...</p>
+                </div>
+                <p id="current-alphabet" class="text-black flex justify-center text-9xl font-bold pt-12 uppercase">Y</p>
+            </div>
+          <!-- keyboard -->
+          <div class="-mt-20 space-y-2">
+            <div class="flex justify-center gap-2 my-1 w-full">
+              <kbd id="q" class="kbd">q</kbd>
+              <kbd id="w" class="kbd">w</kbd>
+              <kbd id="e" class="kbd">e</kbd>
+              <kbd id="r" class="kbd">r</kbd>
+              <kbd id="t" class="kbd">t</kbd>
+              <kbd id="y" class="kbd">y</kbd>
+              <kbd id="u" class="kbd">u</kbd>
+              <kbd id="i" class="kbd">i</kbd>
+              <kbd id="o" class="kbd">o</kbd>
+              <kbd id="p" class="kbd">p</kbd>
+            </div>
+            <div class="flex justify-center gap-2 my-1 w-full">
+              <kbd id="a" class="kbd">a</kbd>
+              <kbd id="s" class="kbd">s</kbd>
+              <kbd id="d" class="kbd">d</kbd>
+              <kbd id="f" class="kbd">f</kbd>
+              <kbd id="g" class="kbd">g</kbd>
+              <kbd id="h" class="kbd">h</kbd>
+              <kbd id="j" class="kbd">j</kbd>
+              <kbd id="k" class="kbd">k</kbd>
+              <kbd id="l" class="kbd">l</kbd>
+            </div>
+            <div class="flex justify-center gap-2 my-1 w-full">
+              <kbd id="z" class="kbd">z</kbd>
+              <kbd id="x" class="kbd">x</kbd>
+              <kbd id="c" class="kbd">c</kbd>
+              <kbd id="v" class="kbd">v</kbd>
+              <kbd id="b" class="kbd">b</kbd>
+              <kbd id="n" class="kbd">n</kbd>
+              <kbd id="m" class="kbd">m</kbd>
+              <kbd id="/" class="kbd">/</kbd>
+            </div>
+          </div>
+
+          <!-- life score -->
+        <div class="flex justify-between w-[1000px] pt-24">
+            <div>
+                <!-- display life -->
+                <button class="btn bg-[#894189] border-none text-white rounded-full px-4">
+                    <p>Life</p>
+                <img src="images/Group 23.png" alt="">
+                <p id="current-life">5</p>
+                </button>
+            </div>
+            <div>
+                <!-- display score -->
+                <button class="btn bg-[#360490] border-none text-white rounded-full px-4">
+                    <p>Score</p>
+                    <img src="images/monetization_on.png" alt="">
+                    <p id="current-score">0</p>
+                    
+                </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- paly ground end -->
+
+      <!-- final score start -->
+      <section id="final-section" class="hidden flex justify-center items-center min-h-screen flex flex-col">
+        <div class="text-white text-center space-y-8 border border-[#FFFFFF26] p-10 bg-violet-800 rounded-2xl">
+            <h1 class="text-7xl"><span class="font-bold">Score :</span>
+                <span id="final-score">14</span>
+            </h1>
+            <button onclick="play()" class="bg-white btn w-40 text-xl text-violet-900 font-extrabold border-none">Play Again</button>
+            <p class="text-2xl font-bold">Practice will make you Pro</p>
+          </div>
+          <div class="mt-96">
+            <p class="text-xl text-violet-900 font-bold">Developed by @Hasan Mamun</p>
+          </div>
+      </section>
     </main>
-</body>
+    <script src="scripts/utility.js"></script>
+    <script src="scripts/alpha-clash.js"></script>  
+  </body>
 </html>
